@@ -42,7 +42,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void scheduleJob() {
         ComponentName componentName = new ComponentName(this, MyJobService.class);
         JobInfo jobInfo = new JobInfo.Builder(JOB_ID, componentName)
-                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_METERED)
+
+//                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_METERED)
+                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
+                .setRequiresDeviceIdle(true)
                 .setPersisted(true)
                 .setPeriodic(15 * 60 * 1000) //15 minutes Note: from nougat onwards we can't set < 15 min if we set then it will be reset to 15 minutes
                 .build();
